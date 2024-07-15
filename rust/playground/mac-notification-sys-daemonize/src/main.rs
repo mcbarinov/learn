@@ -1,23 +1,32 @@
 use std::fs::File;
-use std::thread::sleep;
-use std::time::Duration;
+use std::process::Command;
 
 use daemonize::Daemonize;
 
 fn main() {
-    println!("start");
+    println!("start in main process");
 
     let daemonize = Daemonize::new()
-        .pid_file("/tmp/my-daemon.pid") // Every method except `new` and `start`
+        .pid_file("/tmp/my-daemon.pid")
         .stdout(File::create("/tmp/my-daemon.out").unwrap());
 
-    match daemonize.start() {
-        Ok(_) => {
-            println!("start daemonize");
-            sleep(Duration::from_secs(5));
-        }
-        Err(e) => eprintln!("Error, {}", e),
-    }
+    daemonize.start().unwrap();
+    println!("daemonized!");
 
-    println!("finish");
+    let output = Command::new("osascript")
+        .arg("-e")
+        .arg("display notification \"This is a test notification\" with title \"Test Title\"")
+        .output()
+        .expect("Failed to execute command");
+
+    if output.status.success() {
+        println!("Notification sent successfully");
+    } else {
+        eprintln!(
+            "Failed to send notification: {}",
+            String::from_utf8_lossy(&output.stderr)
+        );
+    }
+    println!("done!");
 }
+
