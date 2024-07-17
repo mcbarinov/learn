@@ -1,3 +1,4 @@
+use alloy::hex::ToHexExt;
 use alloy::signers::local::{MnemonicBuilder, PrivateKeySigner};
 use alloy::signers::local::coins_bip39::{English, Mnemonic};
 use eyre::Result;
@@ -8,8 +9,11 @@ fn main() -> Result<()> {
 
     // Generate a new mnemonic
     let mnemonic = Mnemonic::<English>::new_with_count(&mut rng, 24)?;
+    println!("{}", mnemonic.to_phrase());
+    println!("{}", mnemonic.to_seed(Some("my-passphrase")).unwrap().encode_hex());
     dbg!(mnemonic.to_phrase());
     // allow evidence glass broken mask again ship tower head asthma walnut siren burst express mobile pioneer leisure pen absent input receive need help maze
+    // 1bc26ec91cdec72f56c0b717d2d9dd76a8c32911b6035ff3107e6bf13fcc073f718a5b1bc89973f9d7bd53277b5877e77767788dfc44e0a8c6c1adc1a968134a
 
     // Get an account using a mnemonic, index and passphrase.
     let signer = MnemonicBuilder::<English>::default()
