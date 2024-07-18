@@ -27,7 +27,7 @@ fn main() -> Result<()> {
     let signer = MnemonicBuilder::<English>::default()
         .phrase("crop index worth fashion midnight toss message ignore near alter only sand symbol chuckle soldier problem park major cheap dismiss become cage aim health")
         .password("my-passphrase")
-        .derivation_path("m/44'/60'/0'/0/2").unwrap().build();
+        .derivation_path("m/44'/60'/0'/0/2").unwrap().build()?;
     dbg!(signer);
     // address=0xb3b06e771d96c1a99e22f9f587c421d2ed603e61
 
