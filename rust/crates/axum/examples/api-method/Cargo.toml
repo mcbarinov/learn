@@ -1,0 +1,11 @@
+[package]
+name = "axum-api-method"
+version = "0.1.0"
+edition = "2021"
+default-run = "main"
+
+[dependencies]
+axum = "0.7.5"
+reqwest = { version = "0.12.4", features = ["stream"] }
+serde_json = "1.0.117"
+tokio = { version = "1.37.0", features = ["full"] }
