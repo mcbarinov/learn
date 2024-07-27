@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"   href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.fluid.classless.zinc.min.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+
+<header class="navbar">
+    <h1>missing.css</h1>
+    <nav>
+        <ul role="list">
+            <li><a href="/basics.html">basics</a></li>
+            <li><a href="/forms.html">forms</a></li>
+            <li><a href="/dropdown.html">dropdown</a></li>
+            <li><a href="/test.html">test</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <h2>dropdown</h2>
+    </section>
+
+    <div>
+        <button type="button" aria-haspopup="menu" aria-controls="my-menu" aria-expanded="false">☰▾</button>
+        <div role="menu" id="my-menu" hidden="">
+            <a role="menuitem" href="/basics.html">basics</a>
+            <a role="menuitem" href="/forms.html">forms</a>
+            <a role="menuitem" href="/dropdown.html">dropdown</a>
+            <li><a href="/wide-table.html">wide table</a></li>
+            <li><a href="/test.html">test</a></li>
+        </div>
+    </div>
+
+</main>
+<footer>
+    v0.0.1
+</footer>
+</body>
+
+</html>
