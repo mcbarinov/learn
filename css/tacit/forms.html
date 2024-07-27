@@ -4,20 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.slate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css.min.css"/>
     <title>Document</title>
-    <style>
-        :root {
-            --pico-font-size: 100%;
-        }
-    </style>
 </head>
 
-<body class="container-fluid">
-<header>
+<body>
+
+<header class="navbar">
+    <h1>missing.css</h1>
     <nav>
-        <ul>
-            <li><strong>pico</strong></li>
+        <ul role="list">
             <li><a href="/basics.html">basics</a></li>
             <li><a href="/forms.html">forms</a></li>
             <li><a href="/dropdown.html">dropdown</a></li>
@@ -25,23 +21,19 @@
             <li><a href="/test.html">test</a></li>
         </ul>
     </nav>
-    <hr>
 </header>
-
 
 <main>
     <section>
         <h2>forms</h2>
     </section>
 
-    <section>
+    <section class="box">
         <h3>inline</h3>
-        <form>
-            <fieldset class="grid">
-                <input type="text" placeholder="name">
-                <input type="text" placeholder="value">
-                <input type="submit" value="add">
-            </fieldset>
+        <form class="f-row">
+            <input type="text" placeholder="name">
+            <input type="text" placeholder="value">
+            <input type="submit" value="add">
         </form>
     </section>
 
