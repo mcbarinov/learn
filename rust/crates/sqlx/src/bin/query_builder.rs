@@ -29,7 +29,7 @@ async fn main() -> Result<(), sqlx::Error> {
     // before
     dbg!(get_data(&pool).await);
 
-    update_data(&pool).await;
+    update_data_2(&pool).await;
 
     // after update
     dbg!(get_data(&pool).await);
@@ -37,8 +37,17 @@ async fn main() -> Result<(), sqlx::Error> {
     Ok(())
 }
 
-async fn update_data(pool: &PgPool) {
+async fn update_data_1(pool: &PgPool) {
     let mut query: QueryBuilder<Postgres> = QueryBuilder::new("update data set ");
+    query.push("a = ");
+    query.push_bind("new value");
+    query.push(" where id = ").push_bind(1);
+
+    query.build().execute(pool).await.unwrap();
+}
+
+async fn update_data_2(pool: &PgPool) {
+    let mut query: QueryBuilder<Postgres> = QueryBuilder::with_arguments("update data set a = $1", vec!["new value"]);
     query.push("a = ");
     query.push_bind("new value");
     query.push(" where id = ").push_bind(1);

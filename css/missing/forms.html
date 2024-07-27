@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/missing.css@1.1.1">
+    <title>Document</title>
+</head>
+
+<body>
+
+<header class="navbar">
+    <h1>missing.css</h1>
+    <nav>
+        <ul role="list">
+            <li><a href="/basics.html">basics</a></li>
+            <li><a href="/forms.html">forms</a></li>
+            <li><a href="/dropdown.html">dropdown</a></li>
+            <li><a href="/wide-table.html">wide table</a></li>
+            <li><a href="/test.html">test</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <h2>forms</h2>
+    </section>
+
+    <section class="box">
+        <h3>inline</h3>
+        <form class="f-row">
+            <input type="text" placeholder="name">
+            <input type="text" placeholder="value">
+            <input type="submit" value="add">
+        </form>
+    </section>
+
+    <hr>
+
+    <section class="box">
+        <h3>tabular</h3>
+        <form class="table rows">
+            <p><label for="f1">Field1</label><input id="f1"></p>
+            <p><label for="f2">Field2</label>
+                <select id="f2">
+                    <option value="v1">v1</option>
+                    <option value="v2">v2</option>
+                </select>
+            </p>
+            <p><label for="f3">Field3</label><textarea id="f3"></textarea></p>
+            <p><label for="f4">Field4</label><input id="f4"></p>
+            <button type="submit">Save</button>
+        </form>
+    </section>
+
+
+</main>
+<footer>
+    v0.0.1
+</footer>
+</body>
+
+</html>
