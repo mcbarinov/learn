@@ -1,0 +1,13 @@
+- hosts: servers
+  vars:
+    swap_size_gb: 7
+  tasks:
+    - shell: fallocate -l {{ swap_size_gb }}G /swapfile
+    - file: path=/swapfile mode="600"
+    - shell: mkswap /swapfile
+    - shell: swapon /swapfile
+    - name: add to fstab
+      lineinfile:
+        dest: /etc/fstab
+        regexp: "/swapfile"
+        line: "/swapfile swap swap defaults 0 0"

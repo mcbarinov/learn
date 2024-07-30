@@ -1,5 +1,7 @@
 .idea/
 target/
+.vscode/
 tmp/
 .env
+hosts.yml
 .DS_Store

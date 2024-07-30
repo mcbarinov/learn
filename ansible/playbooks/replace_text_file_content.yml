@@ -1,0 +1,4 @@
+- hosts: servers
+
+  tasks:
+    - copy: dest=/tmp/test.txt content="bla2 bla2 bla2\nzzz"

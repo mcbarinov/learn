@@ -1,0 +1,12 @@
+# https://docs.ansible.com/ansible/latest/modules/unarchive_module.html
+
+- hosts: servers
+  tasks:
+    - name: Create /tmp/bat
+      file: path=/tmp/bat state=directory
+
+    - name: Download and unarchive bat
+      unarchive:
+        src: https://github.com/sharkdp/bat/releases/download/v0.15.4/bat-v0.15.4-x86_64-unknown-linux-gnu.tar.gz
+        dest: /tmp/bat
+        remote_src: yes

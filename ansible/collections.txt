@@ -1,0 +1,4 @@
+--> Init collection
+ansible-galaxy collection init my.collection-name
+
+

@@ -1,0 +1,17 @@
+- hosts: servers
+  vars:
+    apt_packages: ["snapd", "mc"]
+    cert_email: spam@google.com
+    # domain: test.example.com <-- define in hosts.yml
+  tasks:
+    - name: Install apt packages
+      apt: pkg={{ apt_packages }} state=latest update_cache=true
+
+    - name: Install core snap
+      snap: name=core
+
+    - name: Install certbot
+      snap: name=certbot classic=yes
+
+    - name: Get cert
+      shell: certbot certonly --standalone -n --agree-tos -m {{ cert_email }} -d {{ domain }}

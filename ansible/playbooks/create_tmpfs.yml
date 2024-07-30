@@ -1,0 +1,12 @@
+- hosts: servers
+  vars:
+    tmpfs_size_gb: 7
+    tmpfs_path: /test1
+  tasks:
+    - file: path={{ tmpfs_path }} state=directory
+    - name: add to fstab
+      lineinfile:
+        dest: /etc/fstab
+        regexp: "tmpfs /{{ tmpfs_path }}"
+        line: "tmpfs {{ tmpfs_path }} tmpfs size={{ tmpfs_size_gb }}G 0 0"
+    - shell: mount {{ tmpfs_path }}
