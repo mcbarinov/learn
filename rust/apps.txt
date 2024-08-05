@@ -1,0 +1,6 @@
+cargo install just bat exa fd-find procs xh dust tokei bottom tealdeer starship git-delta cargo-watch cargo-edit cargo-outdated simple-http-server ripgrep
+
+- ripgrep
+- just 
+- simple-http-server
+

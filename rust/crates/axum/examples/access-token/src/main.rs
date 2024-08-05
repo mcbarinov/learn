@@ -1,19 +1,19 @@
 use std::collections::HashMap;
 use std::sync::Arc;
 
+use axum::{Form, middleware, Router};
 use axum::body::Body;
 use axum::extract::{Query, Request, State};
 use axum::http::StatusCode;
 use axum::middleware::Next;
 use axum::response::{Html, IntoResponse, Redirect, Response};
-use axum::routing::{get, post};
-use axum::{middleware, Form, Router};
+use axum::routing::get;
 use axum_extra::extract::cookie::Cookie;
 use axum_extra::extract::CookieJar;
-use minijinja::{context, path_loader, Environment};
+use cookie::time::Duration;
+use minijinja::{context, Environment, path_loader};
 use serde::{Deserialize, Serialize};
 use tokio::net::TcpListener;
-use tower_http::services::ServeDir;
 
 #[derive(Clone)]
 struct AppState {
@@ -23,15 +23,12 @@ struct AppState {
 
 #[tokio::main]
 async fn main() {
-    let serve_dir = ServeDir::new("static");
     let state = AppState { template: init_templates(), access_token: "my-secret".to_string() };
     let state = Arc::new(state);
     let app = Router::new()
         .route("/", get(index_page))
-        .route("/login", get(login_page))
-        .route("/login", post(login))
+        .route("/login", get(login_page).post(login))
         .route("/logout", get(logout))
-        .nest_service("/static", serve_dir)
         .layer(middleware::from_fn_with_state(Arc::clone(&state), access_token_middleware))
         .with_state(state);
     let listener = TcpListener::bind("127.0.0.1:3000").await.unwrap();
@@ -69,7 +66,8 @@ async fn login_page(State(state): State<Arc<AppState>>) -> HtmlResponse {
 
 async fn login(State(state): State<Arc<AppState>>, mut jars: CookieJar, Form(form): Form<LoginForm>) -> (CookieJar, Redirect) {
     if form.access_token == state.access_token.clone() {
-        let cookie = Cookie::build(("access-token", state.access_token.clone())).path("/").secure(true).http_only(true);
+        let cookie =
+            Cookie::build(("access-token", state.access_token.clone())).path("/").http_only(true).max_age(Duration::days(30));
         jars = jars.add(cookie);
     }
     (jars, Redirect::to("/"))
