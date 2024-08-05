@@ -73,8 +73,10 @@ async fn login(State(state): State<Arc<AppState>>, mut jars: CookieJar, Form(for
     (jars, Redirect::to("/"))
 }
 
-async fn logout(jars: CookieJar) -> (CookieJar, Redirect) {
-    (jars.remove("access-token"), Redirect::to("/"))
+async fn logout(mut jars: CookieJar) -> (CookieJar, Redirect) {
+    let cookie = Cookie::build(("access-token", "")).path("/").http_only(true);
+    jars = jars.add(cookie);
+    (jars, Redirect::to("/"))
 }
 
 // AppError via anyhow
