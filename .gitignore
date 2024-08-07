@@ -5,3 +5,5 @@ tmp/
 .env
 hosts.yml
 .DS_Store
+.venv/
+__pycache__/
