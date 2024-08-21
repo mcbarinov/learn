@@ -1,0 +1,8 @@
+[package]
+name = "learn-bitcoin"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bitcoin = { version = "0.32.2", features = ["rand-std"] }
+rand = "0.8.5"

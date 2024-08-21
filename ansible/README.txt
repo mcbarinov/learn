@@ -1,3 +1,7 @@
+--> Install via uv
+uv tool install ansible-core --with ansible --with docker --with passlib
+uv tool install ansible-lint
+ 
 --> Install via pipx
 pipx install --include-deps ansible
 pipx inject ansible passlib docker

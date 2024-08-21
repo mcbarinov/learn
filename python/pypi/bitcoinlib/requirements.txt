@@ -1,0 +1,2 @@
+bitcoinlib==0.6.15
+python-dotenv==1.0.1
